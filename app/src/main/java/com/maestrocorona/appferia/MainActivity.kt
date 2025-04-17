@@ -1,7 +1,7 @@
 package com.maestrocorona.appferia
 
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,29 +11,39 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainScreen(onNavigateToSecondActivity = {
-                startActivity(Intent(this, Activity2::class.java))
-            })
+            MainScreen(
+                onNavigateNave1 = { startActivity(Intent(this, ActivityNave1::class.java)) },
+                onNavigateNave2 = { startActivity(Intent(this, ActivityNave2::class.java)) },
+                onNavigateNave3 = { startActivity(Intent(this, ActivityNave3::class.java)) },
+                onNavigateConciertos = { startActivity(Intent(this, ActivityConciertos::class.java)) },
+                onNavigateToSecondActivity = { startActivity(Intent(this, Activity2::class.java)) }
+            )
         }
     }
 }
 
 @Composable
-fun MainScreen(onNavigateToSecondActivity: () -> Unit) {
+fun MainScreen(
+    onNavigateNave1: () -> Unit,
+    onNavigateNave2: () -> Unit,
+    onNavigateNave3: () -> Unit,
+    onNavigateConciertos: () -> Unit,
+    onNavigateToSecondActivity: () -> Unit
+) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -45,11 +55,10 @@ fun MainScreen(onNavigateToSecondActivity: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Aquí pasamos una imagen diferente para cada card
-            BusinessItem("Negocios de la Nave 1", R.drawable.logo_rest)
-            BusinessItem("Negocios de la Nave 2", R.drawable.logo_nave2)
-            BusinessItem("Negocios de la Nave 3", R.drawable.logo_nave3)
-            BusinessItem("Atracciones y Conciertos", R.drawable.logo_conciertos)
+            BusinessItem("Negocios de la Nave 1", R.drawable.logo_rest, onNavigateNave1)
+            BusinessItem("Negocios de la Nave 2", R.drawable.logo_nave2, onNavigateNave2)
+            BusinessItem("Negocios de la Nave 3", R.drawable.logo_nave3, onNavigateNave3)
+            BusinessItem("Atracciones y Conciertos", R.drawable.logo_conciertos, onNavigateConciertos)
 
             Button(
                 onClick = onNavigateToSecondActivity,
@@ -62,11 +71,11 @@ fun MainScreen(onNavigateToSecondActivity: () -> Unit) {
 }
 
 @Composable
-fun BusinessItem(text: String, imageResId: Int) {
+fun BusinessItem(text: String, imageResId: Int, onButtonClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
+            .height(150.dp),
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.purple_80)
         )
@@ -75,7 +84,8 @@ fun BusinessItem(text: String, imageResId: Int) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Image(
                 painter = painterResource(id = imageResId),
@@ -84,16 +94,29 @@ fun BusinessItem(text: String, imageResId: Int) {
                     .size(100.dp)
                     .padding(8.dp)
             )
-            Text(
-                text = text,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(8.dp),
-                style = TextStyle(
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = Bold,
-                    color = colorResource(id = R.color.purple_40)
+
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = text,
+                    fontSize = 18.sp,
+                    style = TextStyle(
+                        fontFamily = FontFamily.SansSerif,
+                        fontWeight = Bold,
+                        color = colorResource(id = R.color.purple_40)
+                    )
                 )
-            )
+                Button(
+                    onClick = onButtonClick,
+                    modifier = Modifier.padding(top = 8.dp)
+                ) {
+                    Text("Ver más")
+                }
+            }
         }
     }
 }
@@ -101,5 +124,11 @@ fun BusinessItem(text: String, imageResId: Int) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewMyApp() {
-    MainScreen(onNavigateToSecondActivity = {})
+    MainScreen(
+        onNavigateNave1 = {},
+        onNavigateNave2 = {},
+        onNavigateNave3 = {},
+        onNavigateConciertos = {},
+        onNavigateToSecondActivity = {}
+    )
 }

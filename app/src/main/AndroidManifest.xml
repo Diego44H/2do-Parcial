@@ -28,6 +28,10 @@
             android:name=".Activity2"
             android:exported="false"
             android:theme="@style/Theme.AppFeria" />
+        <activity android:name=".ActivityNave1" />
+        <activity android:name=".ActivityNave2" />
+        <activity android:name=".ActivityNave3" />
+        <activity android:name=".ActivityConciertos" />
     </application>
 
 </manifest>
