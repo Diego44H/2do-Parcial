@@ -16,9 +16,7 @@ class ActivityConciertos : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Surface {
-                Text("Actividades y conciertos")
-            }
+            Conciertos(onBackPressed = { finish() })
         }
     }
 }

@@ -16,9 +16,7 @@ class ActivityNave2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Surface {
-                Text("Negocios de la Nave 2")
-            }
+            Nave2(onBackPressed = { finish() })
         }
     }
 }
