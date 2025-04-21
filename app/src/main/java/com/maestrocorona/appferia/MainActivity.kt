@@ -55,10 +55,10 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            BusinessItem("Negocios de la Nave 1", R.drawable.logo_nave1, onNavigateNave1)
-            BusinessItem("Negocios de la Nave 2", R.drawable.logo_nave2, onNavigateNave2)
-            BusinessItem("Negocios de la Nave 3", R.drawable.logo_nave3, onNavigateNave3)
-            BusinessItem("Atracciones y Conciertos", R.drawable.logo_rest, onNavigateConciertos)
+            BusinessItem("Atracciones y juegos", R.drawable.logo_nave1, onNavigateNave1)
+            BusinessItem("Alimentos y bebidas", R.drawable.logo_nave2, onNavigateNave2)
+            BusinessItem("Artesanias y ventas", R.drawable.logo_nave3, onNavigateNave3)
+            BusinessItem("Artistas principales", R.drawable.logo_rest, onNavigateConciertos)
 
             Button(
                 onClick = onNavigateToSecondActivity,

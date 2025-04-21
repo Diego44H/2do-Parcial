@@ -3,6 +3,7 @@ package com.maestrocorona.appferia
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -48,7 +49,7 @@ fun Conciertos(onBackPressed: () -> Unit) {
             )
 
             // Imagen del artista
-            androidx.compose.foundation.Image(
+            Image(
                 painter = painterResource(id = R.drawable.artista),
                 contentDescription = "Imagen del artista",
                 modifier = Modifier
