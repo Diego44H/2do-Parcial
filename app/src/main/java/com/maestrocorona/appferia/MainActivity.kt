@@ -55,10 +55,10 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            BusinessItem("Negocios de la Nave 1", R.drawable.logo_rest, onNavigateNave1)
+            BusinessItem("Negocios de la Nave 1", R.drawable.logo_nave1, onNavigateNave1)
             BusinessItem("Negocios de la Nave 2", R.drawable.logo_nave2, onNavigateNave2)
             BusinessItem("Negocios de la Nave 3", R.drawable.logo_nave3, onNavigateNave3)
-            BusinessItem("Atracciones y Conciertos", R.drawable.logo_conciertos, onNavigateConciertos)
+            BusinessItem("Atracciones y Conciertos", R.drawable.logo_rest, onNavigateConciertos)
 
             Button(
                 onClick = onNavigateToSecondActivity,
@@ -85,13 +85,13 @@ fun BusinessItem(text: String, imageResId: Int, onButtonClick: () -> Unit) {
                 .fillMaxSize()
                 .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.spacedBy(2.dp)
         ) {
             Image(
                 painter = painterResource(id = imageResId),
                 contentDescription = "Imagen del negocio",
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(130.dp)
                     .padding(8.dp)
             )
 
